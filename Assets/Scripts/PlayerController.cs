@@ -4,28 +4,96 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public float moveSpeed;
-    Vector2 movement;
+    #region Variables
+
+    [Header("Base Settings")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform headerCheck;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+
+
+    [Header("Speed Settings")]
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpingPower;
+
+
+    private Vector2 movement;
 
     private Animator animator;
+    private bool isFacingRight = true;
 
+    private bool isJumping = false;
+
+    #endregion
+
+    #region MonoBehaviour Callbacks
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
+
+    private void Update()
+    {
+        if (!isFacingRight && movement.x > 0f)
+        {
+            Flip();
+        }
+        else if (isFacingRight && movement.x < 0f)
+        {
+            Flip();
+        }
+
+        animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
+        animator.SetFloat("yVelocity", Mathf.Abs(movement.y));
+
+        isJumping = !IsGrounded();
+        animator.SetBool("isJumping", isJumping); 
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y);
+    }
+    #endregion
+
+    #region InputSystem Callbacks
+
     public void Move(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>();
-        animator.SetFloat("speed", Mathf.Abs(movement.x));
     }
+
     public void Jump(InputAction.CallbackContext context)
     {
-        movement = context.ReadValue<Vector2>();
+        if (context.performed && IsGrounded() && !IsHearded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            isJumping = true;
+        }
+        if (context.canceled && rb.velocity.y > 0f )
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
     }
-    private void FixedUpdate()
+    #endregion
+
+    #region Private Methor
+    private bool IsGrounded()
     {
-        rb.rotation = 0f;
-        rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }    
+    private bool IsHearded()
+    {
+        return Physics2D.OverlapCircle(headerCheck.position, 0.2f, groundLayer);
     }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector2 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
+    }
+    #endregion
 }
