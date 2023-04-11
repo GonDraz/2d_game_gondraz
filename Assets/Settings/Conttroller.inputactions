@@ -288,7 +288,7 @@
                 {
                     "name": "",
                     "id": "2500058c-b560-4f14-8c3b-624c3126d67c",
-                    "path": "<Keyboard>/pageUp",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
