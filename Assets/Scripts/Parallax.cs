@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
+    #region Variables
+
     private float lenght, starpos;
 
+    [Header("Camera Parallax Settings")]
     [SerializeField] private GameObject cam;
     [SerializeField] private float parallaxEffect;
+    #endregion
 
+    #region MonoBehaviour Callbacks
     void Start()
     {
         starpos = transform.position.x;
@@ -25,7 +30,6 @@ public class Parallax : MonoBehaviour
 
         if (temp > starpos + lenght) starpos += lenght;
         else if (temp < starpos - lenght) starpos -= lenght;
-
-
     }
+    #endregion
 }
