@@ -16,8 +16,8 @@ public class DayNight : MonoBehaviour
     public int hours;
 
     public bool activateLights; // checks if lights are on
+    public GameObject[] sunLights; // all the sun lights 
     public GameObject[] lights; // all the lights we want on when its dark
-    public SpriteRenderer[] stars; // star sprites 
 
     void Start()
     {
@@ -53,19 +53,23 @@ public class DayNight : MonoBehaviour
 
     public void ControlPPV() // used to adjust the post processing slider.
     {
+        if (hours >= 17 && hours < 18) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
+        {
+            for (int i = 0; i < sunLights.Length; i++)
+            {
+                sunLights[i].SetActive(false);
+            }                       
+        }
+
         //ppv.weight = 0;
         if (hours >= 19 && hours < 20) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
         {
             ppv.weight = (float)mins / 60; // since dusk is 1 hr, we just divide the mins by 60 which will slowly increase from 0 - 1 
-            for (int i = 0; i < stars.Length; i++)
-            {
-                stars[i].color = new Color(stars[i].color.r, stars[i].color.g, stars[i].color.b, (float)mins / 60); // change the alpha value of the stars so they become visible
-            }
 
             if (activateLights == false) // if lights havent been turned on
             {
                 if (mins > 45) // wait until pretty dark
-                {
+                {           
                     for (int i = 0; i < lights.Length; i++)
                     {
                         lights[i].SetActive(true); // turn them all on
@@ -75,18 +79,17 @@ public class DayNight : MonoBehaviour
             }
         }
 
-
         if (hours >= 6 && hours < 7) // Dawn at 6:00 / 6am    -   until 7:00 / 7am
         {
             ppv.weight = 1 - (float)mins / 60; // we minus 1 because we want it to go from 1 - 0
-            for (int i = 0; i < stars.Length; i++)
-            {
-                stars[i].color = new Color(stars[i].color.r, stars[i].color.g, stars[i].color.b, 1 - (float)mins / 60); // make stars invisible
-            }
             if (activateLights == true) // if lights are on
             {
                 if (mins > 45) // wait until pretty bright
                 {
+                    for (int i = 0; i < sunLights.Length; i++)
+                    {
+                        sunLights[i].SetActive(true); // shut them off
+                    }                    
                     for (int i = 0; i < lights.Length; i++)
                     {
                         lights[i].SetActive(false); // shut them off

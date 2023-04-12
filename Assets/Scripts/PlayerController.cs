@@ -8,8 +8,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("Base Settings")]
     [SerializeField] private Rigidbody2D rb;
+
     [SerializeField] private Transform headerCheck;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform leftCheck;
+    [SerializeField] private Transform rightCheck;
+
     [SerializeField] private LayerMask groundLayer;
 
 
@@ -44,7 +48,16 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
+        if (!IsLeftRight())
+        {
+            animator.SetFloat("xVelocity", 0f);
+        }
+        else
+        {
+            animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
+
+        }
+
         animator.SetFloat("yVelocity", Mathf.Abs(movement.y));
 
         isJumping = !IsGrounded();
@@ -53,7 +66,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y);
+        if (!IsLeftRight() && !IsGrounded())
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y);
+        }
     }
     #endregion
 
@@ -86,6 +106,20 @@ public class PlayerController : MonoBehaviour
     private bool IsHearded()
     {
         return Physics2D.OverlapCircle(headerCheck.position, 0.2f, groundLayer);
+    }
+    private bool IsLeftRight()
+    {
+        bool isleft = Physics2D.OverlapCircle(leftCheck.position, 0.7f, groundLayer);
+        bool isRight = Physics2D.OverlapCircle(rightCheck.position, 0.7f, groundLayer);
+
+        if (isleft || isRight) 
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void Flip()
