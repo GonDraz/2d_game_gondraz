@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
-
         }
 
         animator.SetFloat("yVelocity", Mathf.Abs(movement.y));
