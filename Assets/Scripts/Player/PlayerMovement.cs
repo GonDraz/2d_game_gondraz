@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     #region Variables
 
     [Header("Base Settings")]
     [SerializeField] private Rigidbody2D rb;
-
     [SerializeField] private Transform headerCheck;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform leftCheck;

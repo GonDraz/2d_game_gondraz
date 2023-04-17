@@ -5,14 +5,9 @@ using UnityEngine.Rendering;
 
 public class GameController : MonoBehaviour
 {
-
-    private void Start()
-    {
-        Debug.Log("agshd");
-    }
     public static void GameOver()
     {
-
+        Debug.Log("GameOver");
     }
     public static void GameWin()
     {

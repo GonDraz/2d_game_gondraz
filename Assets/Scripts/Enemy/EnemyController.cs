@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
+    [SerializeField] private int damage;
     void OnTriggerEnter2D(Collider2D col2)
     {
-        print(gameObject.name + " OnTriggerEnter2D voi " + col2.gameObject.name);
+        if(col2.tag == "Player")
+        {
+            var healthComponanet = col2.GetComponent<PlayerHealth>();
+            if(healthComponanet != null)
+            {
+                healthComponanet.TakeDamage(damage);
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
