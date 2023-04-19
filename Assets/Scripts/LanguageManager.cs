@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
-public class LocalizationManager : MonoBehaviour
+public class LanguageManager : MonoBehaviour
 {
 private bool active = false;
 

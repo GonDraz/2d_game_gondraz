@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
@@ -11,8 +12,6 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
-    [SerializeField] private Slider musicSlider,sfxSlider;
-    [SerializeField] private TextMeshProUGUI musicVolumeText,sfxVolumeText;
 
 
     private void Awake()
@@ -21,7 +20,6 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else
         {
@@ -31,8 +29,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        MusicVolume();
-        SFXVolume();
+        MusicVolume(75f);
+        SFXVolume(75f);
         PlayMusic("Theme");
     }
 
@@ -42,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.Log("Music Sound not found: "+ name);
+            Debug.Log("Music Sound not found: " + name);
         }
         else
         {
@@ -68,23 +66,21 @@ public class AudioManager : MonoBehaviour
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
-    }    
+    }
 
     public void ToggleSFX()
     {
         sfxSource.mute = !sfxSource.mute;
     }
 
-    public void MusicVolume()
+    public void MusicVolume(float volume)
     {
-        musicSource.volume = musicSlider.value;
-        musicVolumeText.text = ((int)musicSlider.value).ToString();
+        musicSource.volume = volume;
     }
 
-    public void SFXVolume()
+    public void SFXVolume(float volume)
     {
-        sfxSource.volume = sfxSlider.value;
-        sfxVolumeText.text = ((int)sfxSlider.value).ToString();
+        sfxSource.volume = volume;
     }
 
 }
