@@ -22,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int Damage)
     {
+        AudioManager.Instance.PlaySFX("Hit");
+
         currentHealth -= Damage;
         if (currentHealth <= 0)
         {
