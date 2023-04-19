@@ -63,10 +63,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ppv: {fileID: 3953992008460133493}
-  tick: 0
+  tick: 100
   seconds: 0
   mins: 0
-  hours: 0
+  hours: 12
   activateLights: 0
   sunLights: []
   lights: []
