@@ -13,7 +13,7 @@ scopes = {
 	"last_search.B655095F" = "at:"
 	"OpenInspectorPreview.B655095F" = "0"
 	"currentGroup.B655095F" = "all"
-	"last_search.B655092D" = "st:en"
+	"last_search.B655092D" = "st:Men"
 	"OpenInspectorPreview.B655092D" = "0"
 	"currentGroup.B655092D" = "all"
 }
@@ -72,6 +72,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"st:Return"
 ]
 searchItemFavorites = [
 ]

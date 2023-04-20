@@ -58,6 +58,14 @@ MonoBehaviour:
     m_Localized: "Ti\u1EBFng anh"
     m_Metadata:
       m_Items: []
+  - m_Id: 368630451650560
+    m_Localized: "Tr\u1EDF l\u1EA1i"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368920181587968
+    m_Localized: "Quay l\u1EA1i menu"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

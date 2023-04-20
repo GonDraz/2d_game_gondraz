@@ -58,6 +58,14 @@ MonoBehaviour:
     m_Localized: English
     m_Metadata:
       m_Items: []
+  - m_Id: 368630451650560
+    m_Localized: Return
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368920181587968
+    m_Localized: Back menu
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
