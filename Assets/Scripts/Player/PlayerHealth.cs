@@ -9,27 +9,50 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Gradient gradient;
     [SerializeField] private Image fill;
+    [SerializeField] private float immortalTime;
+    public GameObject immortal;
+
     public int currentHealth;
+    private float timeRemaining = 0;
 
     private Animator animator;
 
+
     void Start()
     {
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         UpdateSlider();
+        immortal.SetActive(false);
+    }
+
+    private void LateUpdate()
+    {
+        if (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+            immortal.SetActive(true);
+        }
+        else {
+            immortal.SetActive(false);
+        }
     }
 
     public void TakeDamage(int Damage)
     {
-        AudioManager.Instance.PlaySFX("Hit");
-
-        currentHealth -= Damage;
-        if (currentHealth <= 0)
+        if (timeRemaining <= 0)
         {
-            GameController.GameOver();
+            timeRemaining = immortalTime;
+
+            AudioManager.Instance.PlaySFX("Hit");
+
+            currentHealth -= Damage;
+            if (currentHealth <= 0)
+            {
+                GameController.GameOver();
+            }
+            UpdateSlider();
         }
-        UpdateSlider();
     }
     public void TakeHeal(int Heal)
     {
@@ -38,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        UpdateSlider(); 
+        UpdateSlider();
     }
 
     private void UpdateSlider()

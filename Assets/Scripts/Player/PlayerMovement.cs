@@ -107,8 +107,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private bool IsLeftRight()
     {
-        bool isleft = Physics2D.OverlapCircle(leftCheck.position, 0.7f, groundLayer);
-        bool isRight = Physics2D.OverlapCircle(rightCheck.position, 0.7f, groundLayer);
+        bool isleft = Physics2D.OverlapCircle(leftCheck.position, 0.5f, groundLayer);
+        bool isRight = Physics2D.OverlapCircle(rightCheck.position, 0.5f, groundLayer);
 
         if (isleft || isRight) 
         {
