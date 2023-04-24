@@ -14,7 +14,7 @@ public class Heal : MonoBehaviour
             {
                 if(healthComponanet.currentHealth != healthComponanet.maxHealth)
                 {
-
+                    AudioManager.Instance.PlaySFX("Heal");
                     healthComponanet.TakeHeal(health);
                     Destroy(this.gameObject);
                 }

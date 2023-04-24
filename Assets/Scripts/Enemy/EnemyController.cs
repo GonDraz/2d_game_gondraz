@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private int damage;
-
+    [SerializeField] private bool checkDeleteObject = true;
 
     [System.Obsolete]
     void OnTriggerEnter2D(Collider2D col2)
@@ -18,7 +18,11 @@ public class EnemyController : MonoBehaviour
                 if (healthComponanet.immortal.active == false)
                 {
                     healthComponanet.TakeDamage(damage);
-                    Destroy(this.gameObject);
+
+                    if (checkDeleteObject)
+                    {
+                        Destroy(this.gameObject);
+                    }
                 }
             }
         }

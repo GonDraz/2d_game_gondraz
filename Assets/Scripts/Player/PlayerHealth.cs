@@ -26,11 +26,11 @@ public class PlayerHealth : MonoBehaviour
         immortal.SetActive(false);
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (timeRemaining > 0)
         {
-            timeRemaining -= Time.deltaTime;
+            timeRemaining -= Time.fixedDeltaTime;
             immortal.SetActive(true);
         }
         else {
@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth -= Damage;
             if (currentHealth <= 0)
             {
-                GameController.GameOver();
+                GameController.Instance.GameOver();
             }
             UpdateSlider();
         }

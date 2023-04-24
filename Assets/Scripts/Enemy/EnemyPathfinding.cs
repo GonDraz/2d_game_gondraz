@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,12 +12,11 @@ public class EnemyPathfinding : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private float vision;
+    [SerializeField] private float speed;
     NavMeshAgent agent;
     private Animator animator;
 
     private bool isFacingRight = true;
-    private Transform defaultTransfrom;
-
 
     void Start()
     {
@@ -28,7 +28,6 @@ public class EnemyPathfinding : MonoBehaviour
 
     void Update()
     {
-
         if (!isFacingRight && transform.position.x - target.position.x > 0f)
         {
             Flip();
@@ -38,14 +37,16 @@ public class EnemyPathfinding : MonoBehaviour
             Flip();
         }
 
-        if (Mathf.Abs(transform.position.x - target.position.x) < vision)
+        if (!GameController.Instance.pasueSystem && (Mathf.Abs(transform.position.x - target.position.x) < vision))
         {
-            agent.SetDestination(target.position);
+            agent.speed = speed;
         }
-
+        else
+        {
+            agent.speed = 0f;
+        }
+        agent.SetDestination(target.position);
         animator.SetBool("isGround", IsGrounded());
-
-
     }
     private void Flip()
     {
@@ -58,6 +59,5 @@ public class EnemyPathfinding : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer);
     }
-
 }
 

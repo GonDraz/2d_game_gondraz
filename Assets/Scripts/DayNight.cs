@@ -27,7 +27,10 @@ public class DayNight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() // we used fixed update, since update is frame dependant. 
     {
-        CalcTime();
+        if (!GameController.Instance.pasueSystem)
+        {
+            CalcTime();
+        }
     }
 
     public void CalcTime() // Used to calculate sec, min and hours

@@ -38,39 +38,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!isFacingRight && movement.x > 0f)
+        if (!GameController.Instance.pasueSystem)
         {
-            Flip();
-        }
-        else if (isFacingRight && movement.x < 0f)
-        {
-            Flip();
-        }
+            if (!isFacingRight && movement.x > 0f)
+            {
+                Flip();
+            }
+            else if (isFacingRight && movement.x < 0f)
+            {
+                Flip();
+            }
 
-        if (!IsLeftRight())
-        {
-            animator.SetFloat("xVelocity", 0f);
-        }
-        else
-        {
-            animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
-        }
+            if (!IsLeftRight())
+            {
+                animator.SetFloat("xVelocity", 0f);
+            }
+            else
+            {
+                animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
+            }
 
-        animator.SetFloat("yVelocity", Mathf.Abs(movement.y));
+            animator.SetFloat("yVelocity", Mathf.Abs(movement.y));
 
-        isJumping = !IsGrounded();
-        animator.SetBool("isJumping", isJumping); 
+            isJumping = !IsGrounded();
+            animator.SetBool("isJumping", isJumping);
+        }
     }
 
     private void FixedUpdate()
     {
-        if (!IsLeftRight() && !IsGrounded())
+
+        if (!GameController.Instance.pasueSystem)
         {
-            rb.velocity = new Vector3(0, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y);
+
+            if (!IsLeftRight() && !IsGrounded())
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y);
+            }
         }
     }
     #endregion
@@ -84,14 +92,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded() && !IsHearded())
+        if (!GameController.Instance.pasueSystem)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            isJumping = true;
-        }
-        if (context.canceled && rb.velocity.y > 0f )
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if (context.performed && IsGrounded() && !IsHearded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                isJumping = true;
+            }
+            if (context.canceled && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
     }
     #endregion
@@ -100,17 +111,17 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }    
+    }
     private bool IsHearded()
     {
         return Physics2D.OverlapCircle(headerCheck.position, 0.2f, groundLayer);
     }
     private bool IsLeftRight()
     {
-        bool isleft = Physics2D.OverlapCircle(leftCheck.position, 0.5f, groundLayer);
-        bool isRight = Physics2D.OverlapCircle(rightCheck.position, 0.5f, groundLayer);
+        bool isleft = Physics2D.OverlapCircle(leftCheck.position, 0.4f, groundLayer);
+        bool isRight = Physics2D.OverlapCircle(rightCheck.position, 0.4f, groundLayer);
 
-        if (isleft || isRight) 
+        if (isleft || isRight)
         {
             return false;
         }

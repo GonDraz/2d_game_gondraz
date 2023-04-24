@@ -20,28 +20,33 @@ public class MenuController : MonoBehaviour
     }
     public void PlayButton()
     {
+        AudioManager.Instance.PlaySFX("Button");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
 
     public void QuitButton()
     {
+        AudioManager.Instance.PlaySFX("Button");
         Application.Quit();
     }
 
     public void SettingButton()
     {
+        AudioManager.Instance.PlaySFX("Button");
         main.SetActive(false);
         setting.SetActive(true);
     }
 
     public void BackMenuButton()
     {
+        AudioManager.Instance.PlaySFX("Button");
         main.SetActive(true);
         setting.SetActive(false);
     }
 
     public void BackSettingButton()
     {
+        AudioManager.Instance.PlaySFX("Button");
         setting.SetActive(true);
         audioMenu.SetActive(false);
         language.SetActive(false);
@@ -49,13 +54,14 @@ public class MenuController : MonoBehaviour
 
     public void AudioButton()
     {
+        AudioManager.Instance.PlaySFX("Button");
         setting.SetActive(false);
         audioMenu.SetActive(true);
     }
     public void LanguageButton()
     {
+        AudioManager.Instance.PlaySFX("Button");
         setting.SetActive(false);
         language.SetActive(true);
-
     }
 }

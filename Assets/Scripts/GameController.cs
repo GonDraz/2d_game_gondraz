@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,26 +7,37 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public static void GameOver()
+    public static GameController Instance { get; private set; }
+
+    [SerializeField] private GameObject gameOverMenu;
+
+    public bool pasueSystem = false;
+
+    private void Start()
     {
-        Debug.Log("GameOver");
+        if (gameOverMenu != null)
+        {
+            gameOverMenu.SetActive(false);
+        }
     }
-    public static void GameWin()
+    void Awake()
     {
-
-    }
-    private static void ReloadScene()
-    {
-
-    }
-
-    public static void BackMenuScreen()
-    {
-
-    }
-    public static void ShowMenuScreen()
-    {
-
+        Instance = this;
     }
 
+    public void GameOver()
+    {
+        pasueSystem = true;
+        if (gameOverMenu != null)
+        {
+            AudioManager.Instance.PlaySFX("Over");
+            gameOverMenu.SetActive(true);
+        }
+    }
+
+    public void GameWin()
+    {
+        AudioManager.Instance.PlaySFX("Win");
+
+    }
 }

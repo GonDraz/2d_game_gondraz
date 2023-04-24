@@ -10,7 +10,7 @@ public class AudioUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI musicVolumeText, sfxVolumeText;
     [SerializeField] private Toggle musicToggle, sfxToggle;
 
-    public void Awake()
+    public void Start()
     {
         musicSlider.value = AudioManager.Instance.musicSource.volume;
         sfxSlider.value = AudioManager.Instance.sfxSource.volume;
@@ -25,11 +25,13 @@ public class AudioUI : MonoBehaviour
     }
     public void ToggleMusic()
     {
+        AudioManager.Instance.PlaySFX("Button");
         AudioManager.Instance.ToggleMusic();
     }
 
     public void ToggleSFX()
     {
+        AudioManager.Instance.PlaySFX("Button");
         AudioManager.Instance.ToggleSFX();
     }
 
@@ -44,6 +46,4 @@ public class AudioUI : MonoBehaviour
         AudioManager.Instance.SFXVolume(sfxSlider.value);
         sfxVolumeText.text = ((int)(sfxSlider.value * 100)).ToString();
     }
-
-
 }

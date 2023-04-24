@@ -66,6 +66,14 @@ MonoBehaviour:
     m_Localized: "Quay l\u1EA1i menu"
     m_Metadata:
       m_Items: []
+  - m_Id: 1732324175626240
+    m_Localized: "Ch\u01A1i l\u1EA1i"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1732695501553664
+    m_Localized: "Thua cu\u1ED9c"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

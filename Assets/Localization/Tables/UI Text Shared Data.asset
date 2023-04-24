@@ -63,6 +63,14 @@ MonoBehaviour:
     m_Key: BackMenu
     m_Metadata:
       m_Items: []
+  - m_Id: 1732324175626240
+    m_Key: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1732695501553664
+    m_Key: Game Over
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
