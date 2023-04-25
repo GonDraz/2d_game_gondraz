@@ -121,14 +121,7 @@ public class PlayerMovement : MonoBehaviour
         bool isleft = Physics2D.OverlapCircle(leftCheck.position, 0.4f, groundLayer);
         bool isRight = Physics2D.OverlapCircle(rightCheck.position, 0.4f, groundLayer);
 
-        if (isleft || isRight)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return (isleft || isRight) ? false : true;
     }
 
     private void Flip()

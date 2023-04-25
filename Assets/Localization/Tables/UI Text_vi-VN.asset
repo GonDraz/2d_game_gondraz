@@ -74,6 +74,10 @@ MonoBehaviour:
     m_Localized: "Thua cu\u1ED9c"
     m_Metadata:
       m_Items: []
+  - m_Id: 2050902998233088
+    m_Localized: "Chi\u1EBFn th\u1EAFng"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

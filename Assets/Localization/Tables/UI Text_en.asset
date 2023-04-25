@@ -74,6 +74,10 @@ MonoBehaviour:
     m_Localized: Game Over
     m_Metadata:
       m_Items: []
+  - m_Id: 2050902998233088
+    m_Localized: Win
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -21,7 +21,7 @@ public class MenuController : MonoBehaviour
     public void PlayButton()
     {
         AudioManager.Instance.PlaySFX("Button");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        Loader.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitButton()

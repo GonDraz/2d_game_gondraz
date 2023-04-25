@@ -71,6 +71,10 @@ MonoBehaviour:
     m_Key: Game Over
     m_Metadata:
       m_Items: []
+  - m_Id: 2050902998233088
+    m_Key: Win
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

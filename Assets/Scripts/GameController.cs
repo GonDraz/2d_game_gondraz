@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
 
     [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private GameObject gameWinMenu;
 
     public bool pasueSystem = false;
 
@@ -18,6 +19,10 @@ public class GameController : MonoBehaviour
         if (gameOverMenu != null)
         {
             gameOverMenu.SetActive(false);
+        }
+        if (gameWinMenu != null)
+        {
+            gameWinMenu.SetActive(false);
         }
     }
     void Awake()
@@ -37,7 +42,11 @@ public class GameController : MonoBehaviour
 
     public void GameWin()
     {
-        AudioManager.Instance.PlaySFX("Win");
-
+        pasueSystem = true;
+        if (gameWinMenu != null)
+        {
+            AudioManager.Instance.PlaySFX("Win");
+            gameWinMenu.SetActive(true);
+        }
     }
 }

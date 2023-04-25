@@ -62,6 +62,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: fbb07cc8d2c60774ebea84eb1c67a83b, type: 3}
   - name: Over
     audioClip: {fileID: 8300000, guid: 878a4696bc8e9f24eba4e9b203ae67f6, type: 3}
+  - name: Wipe
+    audioClip: {fileID: 8300000, guid: fec41007d5f976940a54e54d599e44c6, type: 3}
   musicSource: {fileID: 5299123440976625367}
   sfxSource: {fileID: 7478951700053309683}
 --- !u!1 &808227990576257900

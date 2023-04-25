@@ -15,6 +15,7 @@ private bool active = false;
 
     private IEnumerator SetLocale(int id)
     {
+        AudioManager.Instance.PlaySFX("Button");
         active = true;
         yield return LocalizationSettings.InitializationOperation;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[id];

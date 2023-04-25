@@ -22,25 +22,26 @@ public class MenuInGame : MonoBehaviour
     {
         if (menu != null)
         {
-            bool ckeck = menu.active;
-            button.SetActive(ckeck);
-            menu.SetActive(!ckeck);
+            bool check = menu.active;
+            button.SetActive(check);
+            menu.SetActive(!check);
 
             AudioManager.Instance.PlaySFX("Button");
-            GameController.Instance.pasueSystem = !ckeck;
+            GameController.Instance.pasueSystem = !check;
         }
     }
 
     public void BackToMenuScreen()
     {
         AudioManager.Instance.PlaySFX("Button");
-        SceneManager.LoadScene("Menu");
+        Loader.Instance.LoadScene(0);
+
     }
 
 
     public void RestartScreen()
     {
         AudioManager.Instance.PlaySFX("Button");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Loader.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

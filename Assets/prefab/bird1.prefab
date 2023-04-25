@@ -130,6 +130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   vision: 20
+  speed: 8
 --- !u!61 &7713178611358701917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  checkDeleteObject: 1
 --- !u!95 &7713178611358701920
 Animator:
   serializedVersion: 4
