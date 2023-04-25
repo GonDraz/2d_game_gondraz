@@ -10,10 +10,15 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    #region Variables
+    [Header("list Sounds")]
+
     public Sound[] musicSounds, sfxSounds;
+    [Header("Audio Source")]
     public AudioSource musicSource, sfxSource;
+    #endregion
 
-
+    #region MonoBehaviour Callbacks
     private void Awake()
     {
         if (Instance == null)
@@ -33,6 +38,9 @@ public class AudioManager : MonoBehaviour
         SFXVolume(75f);
         PlayMusic("Theme");
     }
+    #endregion
+
+    #region Public Methor
 
     public void PlayMusic(string name)
     {
@@ -82,5 +90,5 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.volume = volume;
     }
-
+    #endregion
 }

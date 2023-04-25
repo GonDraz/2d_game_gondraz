@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    #region Variables
+    [Header("UI")]
     [SerializeField] private GameObject main;
     [SerializeField] private GameObject setting;
     [SerializeField] private GameObject audioMenu;
     [SerializeField] private GameObject language;
+    #endregion
 
-
+    #region MonoBehaviour Callbacks
     private void Start()
     {
         main.SetActive(true);
@@ -18,6 +21,9 @@ public class MenuController : MonoBehaviour
         audioMenu.SetActive(false);
         language.SetActive(false);
     }
+    #endregion
+
+    #region Public Methor
     public void PlayButton()
     {
         AudioManager.Instance.PlaySFX("Button");
@@ -64,4 +70,5 @@ public class MenuController : MonoBehaviour
         setting.SetActive(false);
         language.SetActive(true);
     }
+    #endregion
 }

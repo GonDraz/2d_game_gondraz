@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private int damage;
     [SerializeField] private bool checkDeleteObject = true;
+    #endregion
 
+    #region Trigger
     [System.Obsolete]
     void OnTriggerEnter2D(Collider2D col2)
     {
@@ -27,4 +30,5 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+    #endregion
 }

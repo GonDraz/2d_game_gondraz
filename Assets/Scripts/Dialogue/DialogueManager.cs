@@ -6,19 +6,24 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    #region Variables
+    [Header("Text")]
+    [SerializeField]private TextMeshProUGUI nameText, dialogueText;
 
-    public TextMeshProUGUI nameText, dialogueText;
-
+    [Header("Animator")]
     public Animator animator;
 
     private Queue<string> sentences;
+    #endregion
 
-    // Use this for initialization
+    #region MonoBehaviour Callbacks
     void Start()
     {
         sentences = new Queue<string>();
     }
+    #endregion
 
+    #region Public Methor
     public void StartDialogue(Dialogue dialogue)
     {
         animator.SetBool("isOpen", true);
@@ -47,6 +52,7 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
+    #endregion
 
     IEnumerator TypeSentence(string sentence)
     {
@@ -58,9 +64,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void EndDialogue()
+
+    #region Private Methor
+    private void EndDialogue()
     {
         animator.SetBool("isOpen", false);
     }
-
+    #endregion
 }

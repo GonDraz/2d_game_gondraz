@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
-
+    [SerializeField]private Dialogue dialogue;
+    #region Public Methor
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
-
+    #endregion
 }

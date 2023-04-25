@@ -6,10 +6,18 @@ using UnityEngine.UI;
 
 public class AudioUI : MonoBehaviour
 {
+    #region Variables
+
+    [Header("Slider")]
     [SerializeField] private Slider musicSlider, sfxSlider;
+    [Header("Text")]
     [SerializeField] private TextMeshProUGUI musicVolumeText, sfxVolumeText;
+    [Header("Toggle")]
     [SerializeField] private Toggle musicToggle, sfxToggle;
 
+    #endregion
+
+    #region MonoBehaviour Callbacks
     public void Start()
     {
         musicSlider.value = AudioManager.Instance.musicSource.volume;
@@ -23,6 +31,8 @@ public class AudioUI : MonoBehaviour
         MusicVolume();
         SFXVolume();
     }
+    #endregion
+    #region Public Methor
     public void ToggleMusic()
     {
         AudioManager.Instance.PlaySFX("Button");
@@ -46,4 +56,5 @@ public class AudioUI : MonoBehaviour
         AudioManager.Instance.SFXVolume(sfxSlider.value);
         sfxVolumeText.text = ((int)(sfxSlider.value * 100)).ToString();
     }
+    #endregion
 }

@@ -9,11 +9,14 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
+    #region Variables
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject gameWinMenu;
-
+    [Header("Don't Edit")]
     public bool pasueSystem = false;
+    #endregion
 
+    #region MonoBehaviour Callbacks
     private void Start()
     {
         if (gameOverMenu != null)
@@ -29,7 +32,9 @@ public class GameController : MonoBehaviour
     {
         Instance = this;
     }
+    #endregion
 
+    #region Public Methor
     public void GameOver()
     {
         pasueSystem = true;
@@ -49,4 +54,5 @@ public class GameController : MonoBehaviour
             gameWinMenu.SetActive(true);
         }
     }
+    #endregion
 }

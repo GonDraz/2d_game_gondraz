@@ -8,17 +8,21 @@ using UnityEngine.Rendering; // used to access the volume component
 
 public class DayNight : MonoBehaviour
 {
+    [Header("Settings")]
     public Volume ppv; // this is the post processing volume
-
     public float tick; // Increasing the tick, increases second rate
+
+    [Header("Time")]
     public float seconds;
     public int mins;
     public int hours;
 
+    [Header("Light")]
     public bool activateLights; // checks if lights are on
     public GameObject[] sunLights; // all the sun lights 
     public GameObject[] lights; // all the lights we want on when its dark
 
+    #region MonoBehaviour Callbacks
     void Start()
     {
         ppv = gameObject.GetComponent<Volume>();
@@ -32,8 +36,10 @@ public class DayNight : MonoBehaviour
             CalcTime();
         }
     }
+    #endregion
 
-    public void CalcTime() // Used to calculate sec, min and hours
+    #region Private Methor
+    private void CalcTime() // Used to calculate sec, min and hours
     {
         seconds += Time.fixedDeltaTime * tick; // multiply time between fixed update by tick
 
@@ -54,7 +60,7 @@ public class DayNight : MonoBehaviour
         ControlPPV(); // changes post processing volume after calculation
     }
 
-    public void ControlPPV() // used to adjust the post processing slider.
+    private void ControlPPV() // used to adjust the post processing slider.
     {
         if (hours >= 17 && hours < 18) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
         {
@@ -102,4 +108,5 @@ public class DayNight : MonoBehaviour
             }
         }
     }
+    #endregion
 }

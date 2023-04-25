@@ -7,17 +7,24 @@ using UnityEngine.AI;
 
 public class EnemyPathfinding : MonoBehaviour
 {
+    #region Variables
+    [Header("Forllow")]
     [SerializeField] private Transform target;
+
+    [Header("Ground")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Settings")]
     [SerializeField] private float vision;
     [SerializeField] private float speed;
+
     NavMeshAgent agent;
     private Animator animator;
-
     private bool isFacingRight = true;
+    #endregion
 
+    #region MonoBehaviour Callbacks
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -48,6 +55,9 @@ public class EnemyPathfinding : MonoBehaviour
         agent.SetDestination(target.position);
         animator.SetBool("isGround", IsGrounded());
     }
+    #endregion
+
+    #region Private Methor
     private void Flip()
     {
         isFacingRight = !isFacingRight;
@@ -59,5 +69,6 @@ public class EnemyPathfinding : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer);
     }
+    #endregion
 }
 

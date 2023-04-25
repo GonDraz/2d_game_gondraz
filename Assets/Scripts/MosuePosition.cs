@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class MosuePosition : MonoBehaviour
 {
-
-    // Update is called once per frame
     void Update()
     {
         var mouseposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

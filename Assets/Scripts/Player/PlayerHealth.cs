@@ -5,19 +5,25 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    #region Variables
+    [Header("Health Settings")]
     [SerializeField] public int maxHealth;
+    [SerializeField] private float immortalTime;
+    [Header("Health Bar")]
     [SerializeField] private Slider slider;
     [SerializeField] private Gradient gradient;
     [SerializeField] private Image fill;
-    [SerializeField] private float immortalTime;
+
+    [Header("Don't Edit")]
     public GameObject immortal;
-
     public int currentHealth;
+
+
     private float timeRemaining = 0;
-
     private Animator animator;
+    #endregion
 
-
+    #region MonoBehaviour Callbacks
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -33,11 +39,14 @@ public class PlayerHealth : MonoBehaviour
             timeRemaining -= Time.fixedDeltaTime;
             immortal.SetActive(true);
         }
-        else {
+        else
+        {
             immortal.SetActive(false);
         }
     }
+    #endregion
 
+    #region Public Methor
     public void TakeDamage(int Damage)
     {
         if (timeRemaining <= 0)
@@ -63,11 +72,14 @@ public class PlayerHealth : MonoBehaviour
         }
         UpdateSlider();
     }
+    #endregion
 
+    #region Private Methor
     private void UpdateSlider()
     {
         float health = (float)currentHealth / (float)maxHealth;
         slider.value = health;
         fill.color = gradient.Evaluate(health);
     }
+    #endregion
 }

@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuInGame : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject button;
+    #endregion
 
-
+    #region MonoBehaviour Callbacks
     private void Start()
     {
         menu.SetActive(false);
@@ -17,6 +19,9 @@ public class MenuInGame : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Public Methor
     [System.Obsolete]
     public void ToggleMenuInGame()
     {
@@ -44,4 +49,5 @@ public class MenuInGame : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
         Loader.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    #endregion
 }

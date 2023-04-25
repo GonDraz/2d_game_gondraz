@@ -5,12 +5,12 @@ using UnityEngine.Localization.Settings;
 
 public class LanguageManager : MonoBehaviour
 {
-private bool active = false;
+    private bool active = false;
 
     public void ChangeLocale(int id)
     {
         if (active) { return; }
-        StartCoroutine(SetLocale(id)); 
+        StartCoroutine(SetLocale(id));
     }
 
     private IEnumerator SetLocale(int id)
