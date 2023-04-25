@@ -7,6 +7,7 @@ public class Heal : MonoBehaviour
     #region Variables
     [SerializeField] private int health;
     #endregion
+
     void OnTriggerEnter2D(Collider2D col2)
     {
         if (col2.tag == "Player")
