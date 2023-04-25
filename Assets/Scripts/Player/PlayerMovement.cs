@@ -10,11 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform headerCheck;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Transform leftCheck;
-    [SerializeField] private Transform rightCheck;
 
     [SerializeField] private LayerMask groundLayer;
-
 
     [Header("Speed Settings")]
     [SerializeField] private float moveSpeed;
@@ -49,14 +46,7 @@ public class PlayerMovement : MonoBehaviour
                 Flip();
             }
 
-            if (!IsLeftRight())
-            {
-                animator.SetFloat("xVelocity", 0f);
-            }
-            else
-            {
-                animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
-            }
+            animator.SetFloat("xVelocity", Mathf.Abs(movement.x));
 
             animator.SetFloat("yVelocity", Mathf.Abs(movement.y));
 
@@ -70,15 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!GameController.Instance.pasueSystem)
         {
-
-            if (!IsLeftRight() && !IsGrounded())
-            {
-                rb.velocity = new Vector3(0, rb.velocity.y);
-            }
-            else
-            {
-                rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y);
-            }
+            rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y);            
         }
     }
     #endregion
@@ -115,13 +97,6 @@ public class PlayerMovement : MonoBehaviour
     private bool IsHearded()
     {
         return Physics2D.OverlapCircle(headerCheck.position, 0.2f, groundLayer);
-    }
-    private bool IsLeftRight()
-    {
-        bool isleft = Physics2D.OverlapCircle(leftCheck.position, 0.4f, groundLayer);
-        bool isRight = Physics2D.OverlapCircle(rightCheck.position, 0.4f, groundLayer);
-
-        return (isleft || isRight) ? false : true;
     }
 
     private void Flip()

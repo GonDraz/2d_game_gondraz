@@ -8,9 +8,6 @@ using UnityEngine.AI;
 public class EnemyPathfinding : MonoBehaviour
 {
     #region Variables
-    [Header("Forllow")]
-    [SerializeField] private Transform target;
-
     [Header("Ground")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -22,6 +19,8 @@ public class EnemyPathfinding : MonoBehaviour
     NavMeshAgent agent;
     private Animator animator;
     private bool isFacingRight = true;
+
+    private Transform target;
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -31,6 +30,8 @@ public class EnemyPathfinding : MonoBehaviour
         animator = GetComponent<Animator>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        target = FindObjectOfType<PlayerMovement>().transform;
     }
 
     void Update()
