@@ -70,3 +70,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+.idea/.idea.2d_game_gondraz/.idea/.gitignore
+.idea/.idea.2d_game_gondraz/.idea/aws.xml
+.idea/.idea.2d_game_gondraz/.idea/encodings.xml
+.idea/.idea.2d_game_gondraz/.idea/indexLayout.xml
+.idea/.idea.2d_game_gondraz/.idea/vcs.xml

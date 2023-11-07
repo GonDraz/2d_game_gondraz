@@ -22,11 +22,13 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10424a377497a764aa8fabaeda3f19ea
     m_Address: Vietnamese (Vietnam) (vi-VN)
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 32eb1df5ebec6d54a9fa3736f527b041, type: 2}
   m_SchemaSet:
